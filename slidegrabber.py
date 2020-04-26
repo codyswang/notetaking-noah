@@ -56,7 +56,7 @@ class Slidegrabber:
             return False
 
     def save(self, n):
-        filename = self.folder + os.sep + os.path.basename(self.path) + str(n) + ".jpg"
+        filename = self.folder + os.sep + os.path.splitext(self.path)[0] + str(n) + ".jpg"
         os.rename(self.prev, filename)
         print(str(n) + "th capture.")
         return filename
