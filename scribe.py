@@ -48,7 +48,7 @@ class Scribe:
         '''
         if(os.path.exists(self.audio_file)):
             print("Found file: " + str(self.audio_file))
-            print("Audio already extracted... Skipping.")
+            print("Audio already extracted, skipping...")
             self.audio_extracted = True
             return
 
