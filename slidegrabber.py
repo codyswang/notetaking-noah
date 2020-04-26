@@ -8,7 +8,7 @@ import glob
 
 class Slidegrabber:
     def __init__(self, path, folder="slides"):
-        self.path = path
+        self.path = os.path.basename(path)
         self.folder = folder
         try:
             os.mkdir(self.folder)
