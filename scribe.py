@@ -9,7 +9,11 @@ import io
 
 
 class Scribe:
-
+    '''
+    Class meant to transcribe the audio to a data structure
+    containing tuples of timestamps and respective strings captured
+    from the video during the timestamp.
+    '''
     def __init__(self, path, directory="audio_segments"):
         self.path = path
         self.directory = directory
@@ -19,6 +23,13 @@ class Scribe:
         self.papyrus = list()
 
     def split_by_silence(self):
+        '''
+        Uses the Splitter class to split the audio by silence
+        to get the timestamps and respective filenames of the
+        split segments.
+
+        Segments is a list of tuples (filename, (start_time, end_time)).
+        '''
         if(self.audio_extracted):
             splitter = Splitter(self.audio_file)
         else:
@@ -31,6 +42,10 @@ class Scribe:
         return self.papyrus
 
     def extract_audio_from_video(self):
+        '''
+        Extract the audio from a video that has been
+        passed as self.path.
+        '''
         if(os.path.exists(self.audio_file)):
             print("Found file: " + str(self.audio_file))
             print("Audio already extracted... Skipping.")
@@ -42,6 +57,11 @@ class Scribe:
         self.audio_extracted = True
 
     def recognize(self, segment):
+        '''
+        Uses the Google Cloud API to recognize the given audio segment.
+        Segment is a tuple ((start_time, end_time), filename).
+        Runs long_running_recognize() if the audio segment is too long.
+        '''
         client = speech_v1.SpeechClient()
 
         filename, timestamp = segment[0], segment[1]
@@ -82,6 +102,14 @@ class Scribe:
         return (timestamp, transcripts)
 
     def scribble(self):
+        '''
+        Extracts audio from the provided *.mp4 file and then
+        splits its audio by silence to get phrases that are mentioned.
+
+        Afterwards, queries audio segments to the cloud API and returns
+        it in a list of tuples ((start_time, end_time), list_of_strings)
+        where start_time and end_time are in seconds.
+        '''
         self.extract_audio_from_video()
         self.split_by_silence()
 
@@ -94,6 +122,10 @@ class Scribe:
             self.papyrus.append(note)
 
     def peruse(self):
+        '''
+        Prints the papyrus data nicely to see exactly when each transcribed
+        text was mentioned in the video
+        '''
         for timestamp, transcripts in self.papyrus:
             start = timestamp[0]/1000
             end = timestamp[1]/1000

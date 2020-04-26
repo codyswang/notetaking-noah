@@ -4,6 +4,11 @@ import sys
 
 
 class Patch:
+    '''
+    Data structure meant to contain
+    the timestamp, path to the slide image,
+    and text from the timestamp in the video.
+    '''
     def __init__(self, timestamp, slide_path, script):
         # tuple with (slide_start, slide_end)
         self.timestamp = timestamp
@@ -14,10 +19,21 @@ class Patch:
         self.script = script
 
 class Stitcher:
+    '''
+    Class meant to stitch together the
+    timestamps of the slide images and
+    texts.
+    '''
     def __init__(self, path):
         self.path = path
         self.quilt = list()
 
+    '''
+    Stitches togehter timetamps of slide images
+    and texts.
+
+    Updates self.quilt with a list of patches.
+    '''
     def stitch(self):
         scribe = Scribe(self.path)
         slidegrabber = Slidegrabber(self.path)
@@ -43,6 +59,9 @@ class Stitcher:
             timestamp = (slide_start, slide_end)
             self.quilt.append(Patch(timestamp, slide_path, script))
 
+    '''
+    Getter for self.quilt.
+    '''
     def get_quilt(self):
         return self.quilt
 
