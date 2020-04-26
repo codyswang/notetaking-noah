@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import timeit
+import glob
 
 class Slidegrabber:
     def __init__(self, path, folder="slides"):
@@ -31,6 +32,20 @@ class Slidegrabber:
         percentage = (dif / 255.0 * 100) / ncomponents
         return percentage
 
+    def remove_old_files(self):
+
+        if not os.path.exists(self.folder):
+            os.makedirs(self.folder)
+
+        os.chdir(self.folder)
+
+        files=glob.glob('*.jpg')
+
+        for filename in files:
+            os.unlink(filename)
+
+        os.chdir("..")
+
     def is_different(self):
         threshold = 1
         percentage = self.get_percentage_difference(self.prev, self.cur)
@@ -55,7 +70,9 @@ class Slidegrabber:
 
     def get_slides(self):
         slides = list()
-        cam = cv2.VideoCapture(path)
+        self.remove_old_files()
+
+        cam = cv2.VideoCapture(self.path)
         fps = cam.get(cv2.CAP_PROP_FPS)
         n = 0
         count = 0
@@ -63,6 +80,7 @@ class Slidegrabber:
         cv2.imwrite(self.prev, a[1])
         start = 0
 
+        print("Grabbing slides...")
         while(True):
             ret,frame = cam.read()
             if ret:
@@ -92,6 +110,7 @@ class Slidegrabber:
 
         cam.release()
         cv2.destroyAllWindows()
+
         return slides
 
 if __name__ == '__main__':
