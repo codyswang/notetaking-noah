@@ -30,7 +30,7 @@ Finally, the text and pictures are passed pack into the GUI, and a PDF document 
 
 ## Requirements
 
-Require packages can be installed via pip.
+Required packages can be installed via pip.
 
 ```pip install -r requirements.txt```
 
