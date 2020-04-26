@@ -5,7 +5,7 @@
 <p align="center">  
   <b>Notetaking Noah streamlines watching and reviewing lectures.</b>
 
-  <img src="https://raw.githubusercontent.com/codyswang/notetaking-noah/master/lowl.png">
+  <img src="https://raw.githubusercontent.com/codyswang/notetaking-noah/master/owl.png">
 </p>
 
 ## Inspiration
