@@ -30,11 +30,11 @@ Finally, the text and pictures are passed pack into the GUI, and a PDF document 
 
 ## Requirements
 
-Simply run
+Require packages can be installed via pip.
 
 ```pip install -r requirements.txt```
 
-and make sure you have the environment variable GOOGLE_APPLICATION_CREDENTIALS set to your Google Cloud api key.
+In addition, make sure you have the environment variable GOOGLE_APPLICATION_CREDENTIALS set to your Google Cloud api key.
 
 ## Challenges we ran into
 None of us had experience with front-end development, so making a GUI for Notetaking Noah posed many challenges in communicating user actions (button presses, numerical inputs) into tangible back-end actions. Another challenge we faced was using OpenCV to efficiently detect differences between images as well as utilizing ReportLab to format and produce a PDF.
