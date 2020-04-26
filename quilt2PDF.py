@@ -20,12 +20,14 @@ class PDFifier:
                     self.stitcher = None
                 else:
                     self.stitcher = Stitcher(self.path)
+                self.quilt = None
 
-        def makePDF(self, stitcher):
-            # Runs the stitcher
+        def get_quilt(self, stitcher):
             stitcher.stitch()
-            quilt = stitcher.get_quilt()
+            self.quilt = stitcher.get_quilt()
 
+        def makePDF(self, quilt):
+            # Runs the stitcher
             styles = getSampleStyleSheet()
             styles.add(ParagraphStyle(name='Left', leading=24, alignment=TA_LEFT))
 
@@ -65,4 +67,4 @@ class PDFifier:
 if(__name__ == '__main__'):
         path = sys.argv[1]
         pdf = PDFifier(path=path)
-        pdf.makePDF(pdf.stitcher)
+
