@@ -2,6 +2,12 @@
 
 !["Notetaking Noah!"](owl.png)
 
+<p align="center">  
+  <b>Notetaking Noah streamlines watching and reviewing lectures.</b>
+
+  <img src="https://raw.githubusercontent.com/codyswang/notetaking-noah/master/lowl.png">
+</p>
+
 ## Inspiration
 As colleges and universities shut down across the United States, millions of students have been forced to move to online video lectures. This presents many unique challenges to a university education: different time-zones often make it impossible to attend live lectures, and even those who do report a lower quality and effectiveness when compared to lectures in-person. 
 
