@@ -1,7 +1,4 @@
 # Notetaking Noah
-
-!["Notetaking Noah!"](owl.png)
-
 <p align="center">  
   <b>Notetaking Noah streamlines watching and reviewing lectures.</b>
 
